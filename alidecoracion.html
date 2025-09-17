@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aliart - Artesanías Únicas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Variables y reset */
+        :root {
+            --color-primary: #8B4513;
+            --color-secondary: #D2B48C;
+            --color-accent: #A52A2A;
+            --color-light: #F5F5DC;
+            --color-dark: #333;
+            --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            border-radius: 10px;
+            max-width: 1200px;
+            margin: 90px auto;
+            padding: 0 10px;
+            font-family: Arial, sans-serif;
+            background-color: #F4F0FA;
+            box-sizing: border-box;
+            line-height: 1.5;
+            color: #333;
+        }
+
+        /* Asegura que los elementos no se salgan de la pantalla */
+        *,
+        *::before,
+        *::after {
+            box-sizing: inherit;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header y navegación */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--color-primary);
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+        }
+        
+        .nav-menu {
+            display: flex;
+        }
+        
+        .nav-item {
+            margin-left: 25px;
+            position: relative;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-link i {
+            margin-left: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .nav-link:hover {
+            color: var(--color-accent);
+        }
+        
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            width: 220px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--transition);
+            z-index: 1000;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-item {
+            padding: 12px 15px;
+            display: block;
+            border-bottom: 1px solid #eee;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+        
+        .dropdown-item i {
+            margin-right: 10px;
+            color: var(--color-primary);
+        }
+        
+        .dropdown-item:hover {
+            background-color: var(--color-light);
+            color: var(--color-accent);
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(200, 255, 245, 0.66), rgba(220, 250, 255, 0.6)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%238B4513"/><path d="M0 0L100 100" stroke="%23D2B48C" stroke-width="2"/><path d="M100 0L0 100" stroke="%23D2B48C" stroke-width="2"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: black;
+            text-align: center;
+            padding: 100px 0;
+            position: relative;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--color-accent);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn:hover {
+            background-color: var(--color-primary);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Productos Section */
+        .section-title {
+            text-align: center;
+            margin: 60px 0 40px;
+            position: relative;
+            font-size: 2.2rem;
+            color: var(--color-primary);
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--color-accent);
+            margin: 15px auto;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .product-img-container {
+            width: 100%;
+            height: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+            background-color: #f9f9f9;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .product-images {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+        
+        .product-image {
+            min-width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 10px;
+            display: none;
+        }
+        
+        .product-image.active {
+            display: block;
+        }
+        
+        .image-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10px;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+        
+        .nav-btn {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .nav-btn:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        
+        .image-dots {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            z-index: 10;
+        }
+        
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .dot.active {
+            background-color: white;
+            transform: scale(1.2);
+        }
+        
+        .product-info {
+            padding: 20px;
+            text-align: center;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .product-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--color-dark);
+        }
+        
+        .btn-details {
+            margin-top: auto;
+            padding: 10px 15px;
+            background-color: var(--color-primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: bold;
+        }
+        
+        .btn-details:hover {
+            background-color: var(--color-accent);
+        }
+        
+        /* Modal de Galería */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+        
+        .modal-content {
+            position: relative;
+            margin: 60px auto;
+            padding: 10px;
+            width: 90%;
+            max-width: 1000px;
+            animation: zoom 0.6s;
+        }
+        
+        @keyframes zoom {
+            from {transform: scale(0)}
+            to {transform: scale(1)}
+        }
+        
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .close:hover {
+            color: var(--color-secondary);
+        }
+        
+        .gallery-main-img {
+            width: 100%;
+            max-height: 70vh;
+            object-fit: contain;
+            margin-bottom: 20px;
+        }
+        
+        .gallery-thumbnails {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+        
+        .thumbnail:hover, .thumbnail.active {
+            opacity: 1;
+            border-color: var(--color-secondary);
+        }
+        
+        .product-description {
+            color: white;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.1rem;
+        }
+        
+        /* Contacto Section */
+        .contact {
+            background-color: var(--color-light);
+            padding: 60px 0;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .contact-info {
+            margin-bottom: 20px;
+        }
+        
+        .contact-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--color-primary);
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-title i {
+            margin-right: 10px;
+            color: var(--color-primary);
+        }
+        
+        .contact-details {
+            margin-bottom: 10px;
+            padding-left: 30px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--color-primary);
+            color: white;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        
+        .social-link:hover {
+            background-color: var(--color-accent);
+            transform: translateY(-3px);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--color-dark);
+            color: white;
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+        
+        .footer-text {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .btn-volver {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #fffde6;
+            color: #333333;
+            text-decoration: none;
+            border: 1px solid #e0cfc0;
+            border-radius: 6px;
+            font-family: sans-serif;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .btn-volver:hover {
+            background-color: #c2fffa;
+        }
+        
+        /* Mejoras para las imágenes de productos */
+        .product-main-image {
+            width: 100%;
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .product-main-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        /* Botones de categorías */
+        .category-dropdown {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .dropdown-toggle {
+            padding: 12px 30px;
+            background-color: var(--color-primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: bold;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .dropdown-toggle:hover {
+            background-color: var(--color-accent);
+        }
+        
+        .dropdown-menu-categories {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: white;
+            width: 220px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transform: translate(-50%, 10px);
+            transition: var(--transition);
+            z-index: 1000;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .category-dropdown.active .dropdown-menu-categories {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, 0);
+        }
+        
+        .dropdown-item-category {
+            padding: 12px 15px;
+            display: block;
+            border-bottom: 1px solid #eee;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .dropdown-item-category i {
+            margin-right: 10px;
+            color: var(--color-primary);
+        }
+        
+        .dropdown-item-category:hover {
+            background-color: var(--color-light);
+            color: var(--color-accent);
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                flex-direction: column;
+                background-color: white;
+                width: 100%;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+                padding: 20px 0;
+                transition: 0.4s;
+                z-index: 999;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-item {
+                margin: 15px 0;
+                text-align: center;
+                width: 100%;
+            }
+            
+            .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                width: 100%;
+                display: none;
+                margin-top: 10px;
+            }
+            
+            .dropdown.active .dropdown-menu {
+                display: block;
+            }
+            
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+                gap: 20px;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 40px auto;
+            }
+            
+            .gallery-main-img {
+                max-height: 50vh;
+            }
+            
+            .thumbnail {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .product-img-container {
+                height: 200px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.6rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .thumbnail {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .product-img-container {
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="btn-volver">VOLVER ATRAS</a>
+    
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <img src="logo.png" alt="Logo" width="300" height="200" />
+            </a>
+            
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <nav>
+                <ul class="nav-menu" id="nav-menu">
+                    <li class="nav-item"><a href="#products" class="nav-link">Productos</a></li>
+                    <li class="nav-item"><a href="#contact" class="nav-link">Contacto</a></li>
+                    <li class="nav-item"><a href="#hours" class="nav-link">Horarios</a></li>
+                    <li class="nav-item"><a href="#location" class="nav-link">Ubicación</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1 class="hero-title">Artesanías Hechas con Amor</h1>
+            <p class="hero-subtitle">Descubre nuestras creaciones únicas y personalizadas. Cada pieza está elaborada cuidadosamente para brindarte calidad y belleza.</p>
+        </div>
+    </section>
+
+    <!-- Productos Section -->
+    <section id="products">
+        <div class="container">
+            <h2 class="section-title">Nuestros Productos</h2>
+            
+            <!-- Menú desplegable de categorías -->
+            <div class="category-dropdown" id="categoryDropdown">
+                <button class="dropdown-toggle">
+                    <span id="selectedCategory">Todos los Productos</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="dropdown-menu-categories">
+                    <div class="dropdown-item-category" data-category="all">
+                        <i class="fas fa-boxes"></i>Todos los Productos
+                    </div>
+                    <div class="dropdown-item-category" data-category="te-boxes">
+                        <i class="fas fa-gift"></i>Cajas de Té
+                    </div>
+                    <div class="dropdown-item-category" data-category="paintings">
+                        <i class="fas fa-image"></i>Cuadros
+                    </div>
+                    <div class="dropdown-item-category" data-category="cup-holders">
+                        <i class="fas fa-mug-hot"></i>Porta Tazas
+                    </div>
+                    <div class="dropdown-item-category" data-category="candles">
+                        <i class="fas fa-fire"></i>Velas en Forma
+                    </div>
+                    <div class="dropdown-item-category" data-category="container-candles">
+                        <i class="fas fa-jar"></i>Velas en Recipientes
+                    </div>
+                    <div class="dropdown-item-category" data-category="trays">
+                        <i class="fas fa-tray"></i>Bandejas
+                    </div>
+                    <div class="dropdown-item-category" data-category="diffusers">
+                        <i class="fas fa-wind"></i>Mini Difusores
+                    </div>
+                    <div class="dropdown-item-category" data-category="yezo-decor">
+                        <i class="fas fa-home"></i>Decoración Yezo
+                    </div>
+                    <a class="dropdown-item-category" href="https://www.instagram.com/aliart_2025/" target="_blank" data-category="yezo-decor">
+    <i class="fas fa-home"></i> OTROS
+</a>
+
+                </div>
+            </div>
+            
+            <div class="products-grid">
+                <!-- Cajas de Té -->
+                <div class="product-card active" data-category="te-boxes">
+                    <div class="product-img-container">
+                        <div class="product-images">
+                            <img src="cajadete.jpeg" alt="Cajas de Té" class="product-image active">
+                            <img src="cajadete1.jpg" alt="Cajas de Té" class="product-image">
+                            <img src="cajadete2.jpg" alt="Cajas de Té" class="product-image">
+                              <img src="cajadete3.jpg" alt="Cajas de Té" class="product-image">
+                               <img src="cajadete4.jpg" alt="Cajas de Té" class="product-image">
+                                
+                               
+                        </div>
+                        <div class="image-nav">
+                            <button class="nav-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+                            <button class="nav-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        <div class="image-dots">
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Cajas de Té</h3>
+                       
+                    </div>
+                </div>
+                
+                <!-- Cuadros -->
+                <div class="product-card active" data-category="paintings">
+                    <div class="product-img-container">
+                        <div class="product-images">
+                            <img src="cuadro1.png" alt="Cuadros" class="product-image active">
+                            <img src="cuadro2.png" alt="Cuadros" class="product-image">
+                         
+                        </div>
+                        <div class="image-nav">
+                            <button class="nav-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+                            <button class="nav-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        <div class="image-dots">
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Cuadros</h3>
+                     
+                    </div>
+                </div>
+                
+                <!-- Porta Tazas -->
+                <div class="product-card active" data-category="cup-holders">
+                    <div class="product-img-container">
+                        <div class="product-images">
+                            <img src="portataza1.jpeg" alt="Porta Tazas" class="product-image active">
+                            <img src="portataza2.jpeg" alt="Porta Tazas" class="product-image">
+                            <img src="portataza3.png" alt="Porta Tazas" class="product-image">
+                        </div>
+                        <div class="image-nav">
+                            <button class="nav-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+                            <button class="nav-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        <div class="image-dots">
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Porta Tazas</h3>
+                 
+                    </div>
+                </div>
+                
+                <!-- Velas en Forma -->
+                <div class="product-card active" data-category="candles">
+                    <div class="product-img-container">
+                        <div class="product-images">
+                            <img src="velasforma1.png" alt="Velas en Forma" class="product-image active">
+                            <img src="velasforma2.png" alt="Velas en Forma" class="product-image">
+                            <img src="velasforma3.jpeg" alt="Velas en Forma" class="product-image">
+                          <img src="velasforma4.jpg" alt="Velas en Forma" class="product-image">
+                        </div>
+                        <div class="image-nav">
+                            <button class="nav-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+                            <button class="nav-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        <div class="image-dots">
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Velas 3D</h3>
+                       
+                    </div>
+                </div>
+                
+                <!-- Velas en Recipientes -->
+                <div class="product-card active" data-category="container-candles">
+                    <div class="product-img-container">
+                        <div class="product-images">
+                            <img src="velasrecipientes.jpeg" alt="Velas en recipientes" class="product-image active">
+                   
+                        </div>
+                        <div class="image-nav">
+                            <button class="nav-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+                            <button class="nav-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        <div class="image-dots">
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Velas en Recipientes</h3>
+                      
+                    </div>
+                </div>
+                <!-- Bandeja para Desayuno -->
+<div class="product-card active" data-category="desayuno-bandejas">
+    <div class="product-img-container">
+        <div class="product-images">
+            <img src="bandejadesayuno1.jpg" alt="Bandeja para desayuno" class="product-image active">
+            <img src="bandejadesayuno2.jpg" alt="Bandeja para desayuno" class="product-image">
+                       <img src="bandejadesayuno3.jpg" alt="Bandeja para desayuno" class="product-image">
+                       <img src="bandejadesayuno4.jpg" alt="Bandeja para desayuno" class="product-image">
+        </div>
+        <div class="image-nav">
+            <button class="nav-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+            <button class="nav-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="image-dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+        </div>
+    </div>
+    <div class="product-info">
+        <h3 class="product-title">Bandeja para Desayuno</h3>
+    </div>
+</div>
+
+                <!-- Bandejas -->
+                <div class="product-card active" data-category="trays">
+                    <div class="product-img-container">
+                        <div class="product-images">
+                            <img src="vandeja1.png" alt="Bandejas" class="product-image active">
+                            <img src="vandeja2.png" alt="Bandejas" class="product-image">
+                            <img src="vandeja3.jpeg" alt="Bandejas" class="product-image">
+                        </div>
+                        <div class="image-nav">
+                            <button class="nav-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+                            <button class="nav-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        <div class="image-dots">
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Bandejas</h3>
+            
+                    </div>
+                </div>
+                
+                <!-- Mini difusores para auto y placares -->
+                <div class="product-card active" data-category="diffusers">
+                    <div class="product-img-container">
+                        <div class="product-images">
+                            <img src="Minidifusoresparaautosyplacares.jpg" alt="Mini difusores" class="product-image active">
+                                <img src="minidifciores2.jpg" alt="Mini difusores" class="product-image active">   
+                        </div>
+                        <div class="image-nav">
+                            <button class="nav-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+                            <button class="nav-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        <div class="image-dots">
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Mini difusores para auto y placares</h3>
+                     
+                    </div>
+                </div>
+            
+                <!-- Decoracion yezo -->
+                <div class="product-card active" data-category="yezo-decor">
+                    <div class="product-img-container">
+                        <div class="product-images">
+                            <img src="decoracionyezo1.jpg" alt="Decoración Yezo" class="product-image active">
+                            <img src="decoracionyezo2.jpg" alt="Decoración Yezo" class="product-image">
+                            <img src="decoracionyezo3.jpg" alt="Decoración Yezo" class="product-image">
+                        </div>
+                        <div class="image-nav">
+                            <button class="nav-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+                            <button class="nav-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        <div class="image-dots">
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Decoración Yeso</h3>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+
+   <!-- Decoracion yezo -->
+                <div class="product-card active" data-category="yezo-decor">
+                    <div class="product-img-container">
+                        <div class="product-images">
+                            <img src="cuencosmaderzayezo.jpg" alt="Decoración Yezo" class="product-image active">
+                            <img src="cuencosmaderayezo1.jpg" alt="Decoración Yezo" class="product-image">
+                            <img src="cuencosmaderayezo2.jpg" alt="Decoración Yezo" class="product-image">
+                            <img src="cuencosmaderayezo3.jpg" alt="Decoración Yezo" class="product-image">
+                        </div>
+                        <div class="image-nav">
+                            <button class="nav-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+                            <button class="nav-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        <div class="image-dots">
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">  velas en cuenco de madera y yeso </h3>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+        
+    <!-- Modal de Galería -->
+    <div id="galleryModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img class="gallery-main-img" id="mainImage" src="" alt="">
+            <p class="product-description" id="productDescription"></p>
+            <div class="gallery-thumbnails" id="thumbnails"></div>
+        </div>
+    </div>
+
+    <!-- Contacto Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Contacto</h2>
+            
+            <div class="contact-grid">
+                <div class="contact-info" id="hours">
+                    <h3 class="contact-title"><i class="fas fa-clock"></i> Horarios de Atención</h3>
+                    <p class="contact-details"><strong>Lunes a Viernes:</strong> 9 a 12 am y 16 a 18 pm</p>
+                    <p class="contact-details"><strong>Sábados:</strong> Cerrado</p>
+                    <p class="contact-details"><strong>Domingos:</strong> Cerrado</p>
+                </div>
+                
+                <div class="contact-info" id="location">
+                    <h3 class="contact-title"><i class="fas fa-map-marker-alt"></i> Ubicación</h3>
+                    <p class="contact-details">Resistencia, Chaco</p>
+                    <p class="contact-details">Argentina</p>
+                </div>
+                
+                <div class="contact-info">
+                    <h3 class="contact-title"><i class="fas fa-hashtag"></i> Síguenos</h3>
+                    <p>Conoce nuestras últimas creaciones</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/aliart_2025/" class="social-link" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+    // Menu móvil - Mejora para dispositivos pequeños
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+    
+    hamburger.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        hamburger.innerHTML = navMenu.classList.contains('active') 
+            ? '<i class="fas fa-times"></i>' 
+            : '<i class="fas fa-bars"></i>';
+    });
+    
+    // Cerrar menú al hacer clic en un enlace
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth < 768) {
+                navMenu.classList.remove('active');
+                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        });
+    });
+    
+    // Smooth scrolling para enlaces internos (incluyendo el botón volver)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            // Si es el botón volver, no hacer scroll suave
+            if (this.classList.contains('btn-volver')) return;
+            
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+    
+    // Cerrar menú al hacer clic fuera de él (solo en móviles)
+    document.addEventListener('click', (e) => {
+        if (window.innerWidth < 768 && 
+            navMenu.classList.contains('active') &&
+            !e.target.closest('#nav-menu') && 
+            !e.target.closest('#hamburger')) {
+            navMenu.classList.remove('active');
+            hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+        }
+    });
+    
+    // Prevenir que el menú se abra al hacer clic en los dropdowns (ya que no hay)
+    const dropdownItems = document.querySelectorAll('.dropdown');
+    dropdownItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            if (window.innerWidth < 768) {
+                e.stopPropagation();
+            }
+        });
+    });
+    
+    // Asegurar que las imágenes se muestren correctamente
+    document.addEventListener('DOMContentLoaded', function() {
+        // Verificar si las imágenes existen y mostrar placeholder si no
+        const productImages = document.querySelectorAll('.product-image');
+        productImages.forEach(img => {
+            img.onerror = function() {
+                this.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300"><rect width="300" height="300" fill="%23F5F5DC"/><text x="150" y="150" font-family="Arial" font-size="14" fill="%238B4513" text-anchor="middle" dominant-baseline="middle">Imagen no disponible</text></svg>';
+            };
+        });
+    });
+
+    // Funcionalidad para el menú desplegable de categorías
+    document.addEventListener('DOMContentLoaded', function() {
+        const categoryDropdown = document.getElementById('categoryDropdown');
+        const dropdownToggle = categoryDropdown.querySelector('.dropdown-toggle');
+        const dropdownMenu = categoryDropdown.querySelector('.dropdown-menu-categories');
+        const categoryItems = dropdownMenu.querySelectorAll('.dropdown-item-category');
+        const selectedCategory = document.getElementById('selectedCategory');
+        const productCards = document.querySelectorAll('.product-card');
+        
+        // Alternar menú desplegable
+        dropdownToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            categoryDropdown.classList.toggle('active');
+        });
+        
+        // Cerrar menú al hacer clic fuera
+        document.addEventListener('click', function(e) {
+            if (!categoryDropdown.contains(e.target)) {
+                categoryDropdown.classList.remove('active');
+            }
+        });
+        
+        // Función para filtrar productos por categoría
+        function filterProducts(category, categoryName) {
+            productCards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.classList.add('active');
+                } else {
+                    card.classList.remove('active');
+                }
+            });
+            
+            // Actualizar texto del botón
+            selectedCategory.textContent = categoryName;
+            
+            // Cerrar el menú desplegable
+            categoryDropdown.classList.remove('active');
+        }
+        
+        // Agregar event listeners a los elementos del menú
+        categoryItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const category = this.getAttribute('data-category');
+                const categoryName = this.textContent.trim();
+                filterProducts(category, categoryName);
+            });
+        });
+    });
+
+    // Funcionalidad para navegación de imágenes en productos
+    document.addEventListener('DOMContentLoaded', function() {
+        const productCards = document.querySelectorAll('.product-card');
+        
+        productCards.forEach(card => {
+            const images = card.querySelectorAll('.product-image');
+            const dots = card.querySelectorAll('.dot');
+            const prevBtn = card.querySelector('.prev-btn');
+            const nextBtn = card.querySelector('.next-btn');
+            const viewGalleryBtn = card.querySelector('.view-gallery');
+            
+            let currentIndex = 0;
+            
+            // Función para mostrar una imagen específica
+            function showImage(index) {
+                images.forEach(img => img.classList.remove('active'));
+                dots.forEach(dot => dot.classList.remove('active'));
+                
+                images[index].classList.add('active');
+                dots[index].classList.add('active');
+                currentIndex = index;
+            }
+            
+            // Event listeners para botones de navegación
+            if (prevBtn && nextBtn) {
+                prevBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    let newIndex = currentIndex - 1;
+                    if (newIndex < 0) newIndex = images.length - 1;
+                    showImage(newIndex);
+                });
+                
+                nextBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    let newIndex = currentIndex + 1;
+                    if (newIndex >= images.length) newIndex = 0;
+                    showImage(newIndex);
+                });
+            }
+            
+            // Event listeners para los dots
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    showImage(index);
+                });
+            });
+            
+            // Event listener para abrir la galería modal
+            if (viewGalleryBtn) {
+                viewGalleryBtn.addEventListener('click', function() {
+                    openGalleryModal(card);
+                });
+            }
+        });
+    });
+
+    // Funcionalidad para el modal de galería
+    function openGalleryModal(productCard) {
+        const modal = document.getElementById('galleryModal');
+        const mainImage = document.getElementById('mainImage');
+        const thumbnailsContainer = document.getElementById('thumbnails');
+        const productDescription = document.getElementById('productDescription');
+        const closeBtn = document.querySelector('.close');
+        
+        // Obtener todas las imágenes del producto
+        const images = productCard.querySelectorAll('.product-image');
+        const productTitle = productCard.querySelector('.product-title').textContent;
+        
+        // Limpiar thumbnails anteriores
+        thumbnailsContainer.innerHTML = '';
+        
+        // Configurar la imagen principal
+        if (images.length > 0) {
+            mainImage.src = images[0].src;
+            mainImage.alt = images[0].alt;
+        }
+        
+        // Configurar la descripción
+        productDescription.textContent = productTitle;
+        
+        // Crear thumbnails
+        images.forEach((img, index) => {
+            const thumbnail = document.createElement('img');
+            thumbnail.src = img.src;
+            thumbnail.alt = img.alt;
+            thumbnail.classList.add('thumbnail');
+            if (index === 0) thumbnail.classList.add('active');
+            
+            thumbnail.addEventListener('click', function() {
+                mainImage.src = this.src;
+                mainImage.alt = this.alt;
+                
+                // Actualizar thumbnails activos
+                document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+            
+            thumbnailsContainer.appendChild(thumbnail);
+        });
+        
+        // Mostrar el modal
+        modal.style.display = 'block';
+        
+        // Cerrar el modal
+        closeBtn.onclick = function() {
+            modal.style.display = 'none';
+        };
+        
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        };
+    }
+</script>
+</body>
+</html>
