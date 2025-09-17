@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Información del Negocio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --color-primary: #2c3e50;
+            --color-secondary: #7f8c8d;
+            --color-accent: #e67e22;
+            --color-light: #f9f9f9;
+            --color-dark: #2c3e50;
+            --spacing: 1rem;
+            --border-radius: 8px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background-color:antiquewhite;
+            color: var(--color-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+
+        .header {
+            background: var(--color-primary);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+            background-size: cover;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .business-name {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+
+        .business-tagline {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 0;
+        }
+
+        .info-section {
+            padding: 2.5rem;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .info-section:nth-child(even) {
+            background-color: var(--color-light);
+        }
+
+        .info-section:hover {
+            background-color: #f5f7fa;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            color: var(--color-primary);
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .section-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--color-primary);
+            color: white;
+            border-radius: 50%;
+            margin-right: 12px;
+            font-size: 1rem;
+        }
+
+        .schedule-list {
+            list-style: none;
+        }
+
+        .schedule-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .schedule-item:last-child {
+            border-bottom: none;
+        }
+
+        .days {
+            font-weight: 500;
+            color: var(--color-primary);
+        }
+
+        .hours {
+            color: #27ae60;
+            font-weight: 500;
+        }
+
+        .closed {
+            color: #e74c3c;
+            font-weight: 500;
+        }
+
+        .location-text {
+            line-height: 1.8;
+        }
+
+        .city {
+            font-weight: 600;
+            color: var(--color-primary);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .country {
+            color: var(--color-secondary);
+        }
+
+        .social-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .social-text {
+            font-weight: 500;
+            color: var(--color-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .instagram-link {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+            background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            transition: var(--transition);
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(225, 48, 108, 0.25);
+            width: fit-content;
+        }
+
+        .instagram-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(225, 48, 108, 0.35);
+        }
+
+        .instagram-link i {
+            margin-right: 0.7rem;
+            font-size: 1.2rem;
+        }
+
+        .footer {
+            background: var(--color-primary);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .map-placeholder {
+            height: 200px;
+            background: #eef2f7;
+            border-radius: var(--border-radius);
+            margin-top: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-secondary);
+            transition: var(--transition);
+        }
+
+        .map-placeholder:hover {
+            background: #e4e9f2;
+        }
+
+        .map-placeholder i {
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
+            color: var(--color-primary);
+        }
+
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .business-name {
+                font-size: 1.8rem;
+            }
+            
+            .info-section {
+                padding: 2rem 1.5rem;
+            }
+        }
+
+        .decoration-circle {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border: 8px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .circle-1 {
+            top: -40px;
+            right: -40px;
+        }
+
+        .circle-2 {
+            bottom: -60px;
+            left: -60px;
+            width: 180px;
+            height: 180px;
+        }
+
+/* Contenedor para alinear el botón a la izquierda */
+  .button-container {
+    display: flex;
+    justify-content: flex-start; /* Alinea a la izquierda */
+    padding: 20px;
+  }
+
+  /* Estilo del botón */
+  .back-button {
+    background-color: #4CAF50; /* Verde */
+    color: white;
+    border: none;
+    padding: 32px 34px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+  }
+
+  /* Efecto hover */
+  .back-button:hover {
+    background-color: #45a049;
+  }
+
+
+
+    </style>
+</head>
+<body>
+<div class="button-container">
+  <button class="back-button" onclick="location.href='index.html'">← VOLVER ATRAS</button>
+</div>
+
+    <div class="container">
+        <div class="header">
+            <div class="decoration-circle circle-1"></div>
+            <div class="decoration-circle circle-2"></div>
+            <div class="logo">
+                <i class="fas fa-star"></i>
+            </div>
+          
+<h1 class="business-name">aliart</h1>
+<img src="logo.png" class="logo" style="width: 300px; height: 200px;">
+
+        </div>
+        
+        <div class="content-grid">
+            <div class="info-section">
+                <h2 class="section-title">
+                    <span class="section-icon">
+                        <i class="fas fa-clock"></i>
+                    </span>
+                    Horarios de Atención
+                </h2>
+                
+                <ul class="schedule-list">
+                    <li class="schedule-item">
+                        <span class="days">Lunes a Viernes</span>
+                        <span class="hours">9 a 12 am y 16 a 18 pm</span>
+                    </li>
+                    
+                    <li class="schedule-item">
+                        <span class="days">Sábados</span>
+                        <span class="closed">Cerrado</span>
+                    </li>
+                    
+                    <li class="schedule-item">
+                        <span class="days">Domingos</span>
+                        <span class="closed">Cerrado</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="info-section">
+                <h2 class="section-title">
+                    <span class="section-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </span>
+                    Ubicación
+                </h2>
+                
+                <div class="location-text">
+                    <p class="city">Resistencia, Chaco</p>
+                    <p class="country">Argentina</p>
+                </div>
+             <a href="https://www.instagram.com/aliart_2025/" target="_blank" style="text-decoration: none; color: inherit;">
+    <div class="map-placeholder">
+        <i class="fas fa-map-marked-alt"></i>
+        <p>Ver en mapa</p>
+    </div>
+</a>
+
+            
+            <div class="info-section">
+                <h2 class="section-title">
+                    <span class="section-icon">
+                        <i class="fas fa-heart"></i>
+                    </span>
+                    Síguenos
+                </h2>
+                
+                <div class="social-container">
+                    <p class="social-text">Conoce nuestras últimas creaciones</p>
+                    <a href="https://www.instagram.com/aliart_2025/" class="instagram-link" target="_blank">
+                        <i class="fab fa-instagram"></i> @aliart_2025
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+       
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Efecto de aparición gradual para las secciones
+            const sections = document.querySelectorAll('.info-section');
+            sections.forEach((section, index) => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }, 300 + (index * 200));
+            });
+            
+            // Efecto de interacción para el mapa
+            const mapPlaceholder = document.querySelector('.map-placeholder');
+            mapPlaceholder.addEventListener('click', function() {
+                alert('la ubicacion personal del negocio');
+            });
+            
+            // Efecto de rotación para el logo
+            const logo = document.querySelector('.logo i');
+            setInterval(() => {
+                logo.style.transition = 'transform 1.2s ease';
+                logo.style.transform = 'rotate(360deg)';
+                
+                setTimeout(() => {
+                    logo.style.transition = 'none';
+                    logo.style.transform = 'rotate(0deg)';
+                }, 1200);
+            }, 5000);
+        });
+    </script>
+</body>
+</html>
